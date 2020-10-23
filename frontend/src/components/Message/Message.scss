@@ -1,0 +1,12 @@
+.Message {
+  display: block;
+  padding: 10px 20px;
+  clear:both;
+  word-wrap: break-word;
+
+  &.me {
+    color: white;
+    float: right;
+    background-color: #328ec4;
+  }
+}
