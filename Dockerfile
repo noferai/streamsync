@@ -4,7 +4,7 @@ WORKDIR /src/backend
 RUN go mod download
 RUN CGO_ENABLED=0 go build -o app
 
-FROM node:alpine AS node_builder
+FROM node:10.19-alpine AS node_builder
 COPY --from=builder /src/frontend .
 RUN npm install --silent
 RUN npm run build
