@@ -1,4 +1,4 @@
-FROM golang:latest AS builder
+FROM golang:1.15 AS builder
 ADD . /src
 WORKDIR /src/backend
 RUN go mod download
@@ -9,7 +9,7 @@ COPY --from=builder /src/frontend .
 RUN npm install --silent
 RUN npm run build
 
-FROM alpine:latest
+FROM alpine:3.12.1
 WORKDIR /chat
 RUN apk --no-cache add ca-certificates
 COPY --from=builder /src/backend/app .
