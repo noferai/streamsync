@@ -5,5 +5,6 @@
 * **Gofmt** & **ESLint** are used for code formatting
 
 ## Server
+
 ## Client
 
