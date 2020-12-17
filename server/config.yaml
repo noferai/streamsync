@@ -1,0 +1,9 @@
+access_control:
+  allow_origin: http://localhost
+  allow_methods: POST, GET, OPTIONS, PUT, DELETE, UPDATE
+  allow_headers: X-Requested-With, Content-Type, Origin, Authorization, Accept, Client-Security-Token, Accept-Encoding, x-access-token"
+  allow_credentials: true
+  max_age: 86400
+  expose_headers: Content-Length
+
+
