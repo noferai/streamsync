@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React, { Component } from "react";
 import "./Message.scss";
 import Typography from "@material-ui/core/Typography";
@@ -19,5 +20,9 @@ class Message extends Component {
     );
   }
 }
+
+Message.propTypes = {
+  message: PropTypes.string,
+};
 
 export default Message;

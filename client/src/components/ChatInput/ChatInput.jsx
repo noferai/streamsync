@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./ChatInput.scss";
+import PropTypes from "prop-types";
 
 class ChatInput extends Component {
   render() {
@@ -13,5 +14,9 @@ class ChatInput extends Component {
     );
   }
 }
+
+ChatInput.propTypes = {
+  send: PropTypes.func,
+};
 
 export default ChatInput;

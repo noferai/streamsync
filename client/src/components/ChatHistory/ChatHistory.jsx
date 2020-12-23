@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import "./ChatHistory.scss";
 import Message from "../Message/Message";
+import PropTypes from "prop-types";
 
 class ChatHistory extends Component {
   render() {
-    console.log(this.props.chatHistory);
     const messages = this.props.chatHistory.map((msg) => (
       <Message key={msg.timeStamp} message={msg.data} />
     ));
@@ -12,5 +12,9 @@ class ChatHistory extends Component {
     return <div className="ChatHistory">{messages}</div>;
   }
 }
+
+ChatHistory.propTypes = {
+  chatHistory: PropTypes.array,
+};
 
 export default ChatHistory;
