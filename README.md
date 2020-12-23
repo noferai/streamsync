@@ -5,6 +5,13 @@
 * **Gofmt** & **ESLint** are used for code formatting
 
 ## Server
+```bash
+
+```
 
 ## Client
+```bash
+cd client && npm install
+npm run start
+```
 
