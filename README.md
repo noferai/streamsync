@@ -1,4 +1,4 @@
-# Running project
+# Running project (dev)
 ### Prerequisites:
 * Installed **Node.js** version >= 10.19
 * Installed **npm** version >= 6.14
@@ -6,7 +6,8 @@
 
 ## Server
 ```bash
-
+cd server && go get
+go run main.go
 ```
 
 ## Client
