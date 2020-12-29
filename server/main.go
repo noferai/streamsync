@@ -53,7 +53,7 @@ func main() {
 	v1 := r.Group("/v1")
 	{
 		user := new(controllers.UserController)
-		v1.POST("/user/login", user.Login)
+		v1.POST("/user/login", user.Register)
 		v1.POST("/user/register", user.Register)
 		v1.GET("/user/logout", user.Logout)
 

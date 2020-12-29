@@ -17,7 +17,7 @@ func getUserID(c *gin.Context) (userID int64) {
 	return c.MustGet("userID").(int64)
 }
 
-func (ctrl UserController) Login(c *gin.Context) {
+func (ctrl UserController) Register(c *gin.Context) {
 	var loginForm forms.LoginForm
 
 	if c.ShouldBindJSON(&loginForm) != nil {
@@ -25,7 +25,7 @@ func (ctrl UserController) Login(c *gin.Context) {
 		return
 	}
 
-	user, token, err := userModel.Login(loginForm)
+	user, token, err := userModel.Register(loginForm)
 	if err == nil {
 		c.JSON(http.StatusOK, gin.H{"message": "User signed in", "user": user, "token": token})
 	} else {

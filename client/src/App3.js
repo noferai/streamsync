@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import Header from "./components/Header/Header";
-// import Home from "./components/Home/Home";
+import Chat from "./components/Chat/Chat";
 // import ChatInput from "./components/ChatInput/ChatInput";
+import ReactPlayer from "react-player";
+import { BrowserRouter as Router } from "react-router-dom";
 import { connect, sendMsg } from "./api";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
-import { BrowserRouter as Router } from "react-router-dom";
+
 import Tiles from "./components/Tiles";
+import RegistrationForm from "./components/RegistrationForm";
 
 class App extends Component {
   constructor(props) {
@@ -39,8 +42,19 @@ class App extends Component {
         <Router>
           <CssBaseline />
           <Header />
-          <Grid container></Grid>
+          <Grid container>
+            <Grid item xs={1} />
+            <Grid item xs={11}></Grid>
+          </Grid>
           <Tiles></Tiles>
+          <ReactPlayer
+            controls="true"
+            width="100%"
+            height="75%"
+            url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
+          />
+          <Chat />
+          <RegistrationForm />
         </Router>
       </React.Fragment>
     );

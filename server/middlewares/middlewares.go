@@ -10,12 +10,12 @@ import (
 //CORS (Cross-Origin Resource Sharing)
 func CORSMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		c.Writer.Header().Set("Access-Control-Allow-Origin", config.Conf.GetString("access_control.allow_origin"))
-		c.Writer.Header().Set("Access-Control-Max-Age", config.Conf.GetString("access_control.max_age"))
-		c.Writer.Header().Set("Access-Control-Allow-Methods", config.Conf.GetString("access_control.allow_methods"))
-		c.Writer.Header().Set("Access-Control-Allow-Headers", config.Conf.GetString("access_control.allow_headers"))
-		c.Writer.Header().Set("Access-Control-Expose-Headers", config.Conf.GetString("access_control.expose_headers"))
-		c.Writer.Header().Set("Access-Control-Allow-Credentials", config.Conf.GetString("access_control.allow_credentials"))
+		c.Writer.Register().Set("Access-Control-Allow-Origin", config.Conf.GetString("access_control.allow_origin"))
+		c.Writer.Register().Set("Access-Control-Max-Age", config.Conf.GetString("access_control.max_age"))
+		c.Writer.Register().Set("Access-Control-Allow-Methods", config.Conf.GetString("access_control.allow_methods"))
+		c.Writer.Register().Set("Access-Control-Allow-Headers", config.Conf.GetString("access_control.allow_headers"))
+		c.Writer.Register().Set("Access-Control-Expose-Headers", config.Conf.GetString("access_control.expose_headers"))
+		c.Writer.Register().Set("Access-Control-Allow-Credentials", config.Conf.GetString("access_control.allow_credentials"))
 
 		if c.Request.Method == "OPTIONS" {
 			fmt.Println("OPTIONS")
@@ -30,7 +30,7 @@ func CORSMiddleware() gin.HandlerFunc {
 func RequestIDMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		_uuid := uuid.New()
-		c.Writer.Header().Set("X-Request-Id", _uuid.String())
+		c.Writer.Register().Set("X-Request-Id", _uuid.String())
 		c.Next()
 	}
 }

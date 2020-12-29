@@ -86,7 +86,7 @@ func (m AuthModel) CreateAuth(userid int64, td *TokenDetails) error {
 }
 
 func (m AuthModel) ExtractToken(r *http.Request) string {
-	bearToken := r.Header.Get("Authorization")
+	bearToken := r.Register.Get("Authorization")
 	//normally Authorization the_token_xxx
 	strArr := strings.Split(bearToken, " ")
 	if len(strArr) == 2 {
@@ -100,7 +100,7 @@ func (m AuthModel) VerifyToken(r *http.Request) (*jwt.Token, error) {
 	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
 		//Make sure that the token method conform to "SigningMethodHMAC"
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
-			return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
+			return nil, fmt.Errorf("unexpected signing method: %v", token.Register["alg"])
 		}
 		return []byte(os.Getenv("ACCESS_SECRET")), nil
 	})

@@ -49,7 +49,7 @@ func (ctl AuthController) Refresh(c *gin.Context) {
 	token, err := jwt.Parse(tokenForm.RefreshToken, func(token *jwt.Token) (interface{}, error) {
 		//Make sure that the token method conform to "SigningMethodHMAC"
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
-			return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
+			return nil, fmt.Errorf("unexpected signing method: %v", token.Register["alg"])
 		}
 		return []byte(os.Getenv("REFRESH_SECRET")), nil
 	})
