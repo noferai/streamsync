@@ -3,7 +3,6 @@ package controller
 import (
 	"log"
 
-	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	"server/model"
 )
@@ -21,7 +20,7 @@ func GetRoom(db *gorm.DB, id string) (*model.Room, error) {
 	return post, err
 }
 
-func GetRooms(c *gin.Context, db *gorm.DB, args model.Args) ([]model.Room, int64, int64, error) {
+func GetRooms(db *gorm.DB, args model.Args) ([]model.Room, int64, int64, error) {
 	var rooms []model.Room
 	var filteredData, totalData int64
 

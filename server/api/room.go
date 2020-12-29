@@ -41,7 +41,7 @@ func (base *Controller) GetRooms(ctx *gin.Context) {
 	args.Limit = ctx.DefaultQuery("Limit", "25")
 	args.Search = ctx.DefaultQuery("Search", "")
 
-	rooms, filteredData, totalData, err := controller.GetRooms(ctx, base.DB, args)
+	rooms, filteredData, totalData, err := controller.GetRooms(base.DB, args)
 	if err != nil {
 		ctx.AbortWithStatus(404)
 	}
