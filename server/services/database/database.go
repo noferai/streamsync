@@ -2,9 +2,8 @@ package database
 
 import (
 	"fmt"
-
-	"server/model"
-	"server/pkg/config"
+	"server/core/models"
+	"server/services/config"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
@@ -55,7 +54,7 @@ func Setup() {
 	}
 	db.LogMode(configuration.Database.LogMode)
 
-	db.AutoMigrate(&model.Room{}, &model.Message{})
+	db.AutoMigrate(&models.Room{}, &models.Message{})
 	DB = db
 }
 

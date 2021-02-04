@@ -1,13 +1,11 @@
 package main
 
 import (
-	swaggerFiles "github.com/swaggo/files"
-	ginSwagger "github.com/swaggo/gin-swagger"
+	"log"
 	_ "server/docs"
-
-	"server/api"
-	"server/pkg/config"
-	"server/pkg/database"
+	"server/routers/v1"
+	"server/services/config"
+	"server/services/database"
 )
 
 func init() {
@@ -19,11 +17,14 @@ func init() {
 // @version 1.0
 // @BasePath /api/v1
 func main() {
-	configuration := config.GetConfig()
+	conf := config.GetConfig()
 
 	db := database.GetDB()
-	r := api.Setup(db)
+	server := v1.NewServer(db)
 
-	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
-	r.Run("127.0.0.1:" + configuration.Server.Port)
+	err := server.Start(conf.Server.Address + ":" + conf.Server.Port)
+	if err != nil {
+		log.Fatal("Cannot start server:", err)
+	}
+
 }

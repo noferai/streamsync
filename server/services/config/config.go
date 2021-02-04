@@ -1,12 +1,26 @@
 package config
 
 import (
-	"log"
-
 	"github.com/spf13/viper"
+	"log"
 )
 
 var Config *Configuration
+
+type ServerConfiguration struct {
+	Address string
+	Port    string
+}
+
+type DatabaseConfiguration struct {
+	Driver   string
+	Dbname   string
+	Username string
+	Password string
+	Host     string
+	Port     string
+	LogMode  bool
+}
 
 type Configuration struct {
 	Server   ServerConfiguration

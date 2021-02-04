@@ -1,15 +1,15 @@
-package controller
+package v1
 
 import (
 	"log"
+	"server/core/models"
 
 	"github.com/jinzhu/gorm"
-	"server/model"
 )
 
-func GetRoom(db *gorm.DB, id string) (*model.Room, error) {
+func GetRoom(db *gorm.DB, id string) (*models.Room, error) {
 	var err error
-	post := new(model.Room)
+	post := new(models.Room)
 
 	if err := db.Where("id = ? ", id).First(&post).Error; err != nil {
 		log.Println(err)
@@ -20,8 +20,8 @@ func GetRoom(db *gorm.DB, id string) (*model.Room, error) {
 	return post, err
 }
 
-func GetRooms(db *gorm.DB, args model.Args) ([]model.Room, int64, int64, error) {
-	var rooms []model.Room
+func GetRooms(db *gorm.DB, args models.Args) ([]models.Room, int64, int64, error) {
+	var rooms []models.Room
 	var filteredData, totalData int64
 
 	table := "rooms"
@@ -44,7 +44,7 @@ func GetRooms(db *gorm.DB, args model.Args) ([]model.Room, int64, int64, error) 
 }
 
 // Both creates and updates post according to if ID field is empty or not
-func SaveRoom(db *gorm.DB, room *model.Room) (*model.Room, error) {
+func SaveRoom(db *gorm.DB, room *models.Room) (*models.Room, error) {
 	if err := db.Save(&room).Error; err != nil {
 		return room, err
 	}
@@ -54,13 +54,13 @@ func SaveRoom(db *gorm.DB, room *model.Room) (*model.Room, error) {
 
 // Soft deletes room and all messages
 func DeleteRoom(db *gorm.DB, id string) error {
-	room := new(model.Room)
+	room := new(models.Room)
 	if err := db.Where("id = ? ", id).Delete(&room).Error; err != nil {
 		log.Println(err)
 		return err
 	}
 
-	message := new(model.Message)
+	message := new(models.Message)
 	if err := db.Where("room_id = ? ", id).Delete(&message).Error; err != nil {
 		log.Println(err)
 	}
