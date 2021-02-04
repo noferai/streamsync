@@ -9,5 +9,8 @@ build/
 
 # dev
 *.db
+server/docs/
 
+# misc
 npm-debug.log*
+package-lock.json
